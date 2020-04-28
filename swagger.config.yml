@@ -3,8 +3,8 @@ swagger:
   entryFile:
     - ./src/domains/**/controllers/*
   outputFormat: OpenApi_3
-  name: Customer-Service API
-  description: This a Rest API for Customer-Service
+  name: Notification-Service API
+  description: This a Rest API for Notification-Service
   license: MIT
   produces: [application/json]
   version: 0.0.1

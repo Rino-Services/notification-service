@@ -7,7 +7,7 @@ export class AwsConfig {
 export class AwsDefaultConfig {
   constructor() {
     aws.config.update({
-      region: AwsConfig.region,
+      region: process.env.AWS_REGION,
       accessKeyId: process.env.AWS_KEYID,
       secretAccessKey: process.env.AWS_KEYSECRET,
     });

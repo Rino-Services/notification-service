@@ -8,12 +8,13 @@ services:
     build:
       context: .
     environment:
-      MONGODB_URI: mongodb://db:27017/template-service
+      MONGODB_URI: mongodb://db:27017/notification-service
       TZ: America/Tegucigalpa
       LC_CTYPE: en_US.UTF-8
       LC_ALL: en_US.UTF-8
       AWS_KEYID: AKIAY62NM6GGW7YNOEXE
       AWS_KEYSECRET: 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
+      AWS_REGION: us-west-2
       JWT_SECRET: P455W0RD
       AWS_WELCOME_EMAIL_ACCOUNT: emanuelesausosa@gmail.com
     ports:
