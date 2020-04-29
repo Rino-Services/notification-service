@@ -1,6 +1,6 @@
 import * as aws from "aws-sdk";
 import { Consumer } from "sqs-consumer";
-import { AwsDefaultConfig } from "../aws-config";
+import { AwsDefaultConfig, AwsConfig } from "../aws-config";
 import { logger } from "../../logger";
 import { Ses } from "../ses";
 import { Inject } from "typescript-ioc";
@@ -14,7 +14,7 @@ export class EmailReceiverSqs extends AwsDefaultConfig {
   constructor() {
     super();
     this.app = Consumer.create({
-      queueUrl: "AwsConfig.sqsUrlEmailActivationDeliveryQueue",
+      queueUrl: AwsConfig.sqsUrlAutopartsSalesAccountActivationEmailDelivery,
       handleMessage: async (message) => {
         this.sendEmail(message);
       },
