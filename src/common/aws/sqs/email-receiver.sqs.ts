@@ -4,9 +4,11 @@ import { AwsDefaultConfig } from "../aws-config";
 import { logger } from "../../logger";
 import { Ses } from "../ses";
 import { Inject } from "typescript-ioc";
+import { EmailBuilder } from "../../message-builders/email.builder";
 
 export class EmailReceiverSqs extends AwsDefaultConfig {
   @Inject private ses: Ses;
+  @Inject private emailBuilder: EmailBuilder;
   private app: Consumer;
 
   constructor() {
@@ -33,22 +35,12 @@ export class EmailReceiverSqs extends AwsDefaultConfig {
     logger.info(`SQS ** EmailReceiverSqs -> Mail sending now ** `);
     let body = JSON.parse(message.Body);
     if (body) {
-      let options: aws.SES.SendEmailRequest = {
-        Source: body.MessageAttributes.From.Value,
-        Destination: {
-          ToAddresses: [body.MessageAttributes.Receipt.Value],
-        },
-        Message: {
-          Subject: {
-            Data: body.MessageAttributes.Subject.Value,
-          },
-          Body: {
-            Html: {
-              Data: body.Message,
-            },
-          },
-        },
-      };
+      // build email
+      let options: aws.SES.SendEmailRequest = await this.emailBuilder.build(
+        body.MessageAttributes
+      );
+
+      // SES labor
       await this.ses.sendEmail(options);
     }
   }
