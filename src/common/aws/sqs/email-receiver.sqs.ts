@@ -34,6 +34,7 @@ export class EmailReceiverSqs extends AwsDefaultConfig {
   private async sendEmail(message: any): Promise<any> {
     logger.info(`SQS ** EmailReceiverSqs -> Mail sending now ** `);
     let body = JSON.parse(message.Body);
+    logger.debug(JSON.stringify(message.Body));
     if (body) {
       // build email
       let options: aws.SES.SendEmailRequest = await this.emailBuilder.build(
