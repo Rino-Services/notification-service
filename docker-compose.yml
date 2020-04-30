@@ -3,7 +3,7 @@ services:
   db:
     image: mongo:latest
     ports:
-      - 27017:27017
+      - 27018:27017
   api:
     build:
       context: .
@@ -18,4 +18,4 @@ services:
       JWT_SECRET: P455W0RD
       AWS_WELCOME_EMAIL_ACCOUNT: emanuelesausosa@gmail.com
     ports:
-      - 3002:3002
+      - 3002:3000
