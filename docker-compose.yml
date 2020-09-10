@@ -17,6 +17,6 @@ services:
       AWS_REGION: us-west-2
       JWT_SECRET: P455W0RD
       AWS_WELCOME_EMAIL_ACCOUNT: emanuelesausosa@gmail.com
-      PORT: 3002
+      PORT: 3000
     ports:
       - 3002:3000
